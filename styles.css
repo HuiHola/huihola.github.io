@@ -1,0 +1,213 @@
+body {
+    /* font-family: Arial, sans-serif; */
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    background-color: #0b0c1f;
+    /* background-image: url("https://images.saymedia-content.com/.image/t_share/MTkyOTkyMzE2OTQ3MDQ3NjQ1/website-background-templates.png"); */
+    /* background-image: url("https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148888451.jpg"); */
+}
+h1{
+    /* color: #1800a3e3; */
+    color :bisque;
+}
+h2{
+    color: #1800a3e3;
+}
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex
+}
+nav img{
+    display: none;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+section {
+    /* background-color: #f7f7f7; */
+    background-color: transparent;
+    font-size: 20px;
+    color: red;
+    padding: 2em;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+li span{
+    color: blue;
+}
+section ul li{
+    display: flex;
+    flex-direction: row;
+}
+h1 {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+li::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #333;
+    margin-right: 10px;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 20px;
+}
+
+/* Animations */
+
+header {
+    animation: slideInFromTop 1s;
+}
+
+nav a {
+    animation: fadeIn 3s;
+}
+#terminal{
+    background-color: #04050f;
+    height: 400px;
+    width: 500px;
+    border: #04050f;
+    font-family: monospace;
+    margin-bottom: 60px;
+    border-radius: 5px;
+}
+#termdiv{
+    text-align: center;
+    background-color: black;
+    height: 30px;
+    width: 500px;
+    padding: .9px;
+}
+#terminal p{
+    color: red;
+}
+#terminal p span{
+    color: blue;
+}
+#termdiv p{
+    color: white;
+}
+#blink{
+    animation: blinker 1s linear infinite;
+}
+section a img{
+    height: 40px;
+    width: 40px;
+}
+section {
+    animation: fadeIn 1s;
+}
+/* section :hover{
+    animation: hovers;
+} */
+
+h1 {
+    animation: fadeIn 1s;
+}
+
+ul {
+    animation: fadeIn 1s;
+}
+
+li {
+    animation: fadeIn 1s;
+}
+
+img {
+    animation: fadeIn 1s;
+}
+
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes blinker { 
+    0% { 
+        opacity: 0; 
+    } 
+
+    50% { 
+        opacity: 0.7; 
+    } 
+
+    100% { 
+        opacity: 0; 
+    }
+}
+@media screen and (max-width: 600px) {
+    nav ul{
+        display: none;
+    }
+    header {
+        animation: slideInFromTop 1s;
+        display: none;
+    }
+    nav img{
+        background-color: black;
+        float: right;
+        display: block;
+        height: 40px;
+        width: 40px;
+    }
+    #terminal{
+        width: 300px;
+    }
+    #termdiv{
+        width: 300px;
+        padding: none;
+    }
+}
