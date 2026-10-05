@@ -1,93 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello to Hola</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dhruv Namdev — HuiHola. Developer and cybersecurity enthusiast building software, Android applications, automation tools and security projects.">
+  <title>HuiHola — Dhruv Namdev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#070a09; --panel:#0c110f; --panel2:#101713; --text:#e8f3ec;
+      --muted:#91a49a; --green:#00ff88; --green2:#00c96b; --line:#1a2a22;
+      --glow:rgba(0,255,136,.14); --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:Roboto,Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+    body:before{
+      content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;
+      background-image:linear-gradient(rgba(0,255,136,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.35) 1px,transparent 1px);
+      background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 75%);
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max),92%);margin:auto}
+    .mono{font-family:"Space Mono",monospace}
+    .green{color:var(--green)}
+    nav{
+      position:fixed;z-index:20;top:0;left:0;width:100%;height:72px;
+      background:rgba(7,10,9,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)
+    }
+    .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-family:"Space Mono";font-weight:700;letter-spacing:-1px}
+    .brand span{color:var(--green)}
+    .links{display:flex;gap:28px;align-items:center}
+    .links a{font-family:"Space Mono";font-size:13px;color:var(--muted);transition:.2s}
+    .links a:hover{color:var(--green)}
+    .menu{display:none;background:none;border:0;color:var(--green);font-size:25px}
+    section{padding:105px 0}
+    .hero{min-height:100vh;display:grid;place-items:center;padding-top:120px}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:55px;align-items:center}
+    .eyebrow{color:var(--green);font:700 13px "Space Mono";margin-bottom:18px}
+    h1{font-size:clamp(48px,8vw,88px);line-height:.95;letter-spacing:-4px;margin-bottom:25px}
+    h1 .outline{color:transparent;-webkit-text-stroke:1px var(--green)}
+    .hero p{max-width:680px;color:var(--muted);font-size:18px;margin-bottom:30px}
+    .buttons{display:flex;gap:13px;flex-wrap:wrap}
+    .btn{padding:12px 18px;border:1px solid var(--green);font-family:"Space Mono";font-size:13px;transition:.2s}
+    .btn.primary{background:var(--green);color:#031108;font-weight:700}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 0 25px var(--glow)}
+    .terminal{
+      border:1px solid var(--line);background:rgba(12,17,15,.88);box-shadow:0 25px 80px rgba(0,0,0,.45);
+      border-radius:10px;overflow:hidden
+    }
+    .terminal-top{height:38px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 13px}
+    .dot{width:9px;height:9px;border-radius:50%;background:#33423a}.terminal-title{margin-left:7px;color:#63756b;font:11px "Space Mono"}
+    .terminal-body{padding:22px;font:13px/2 "Space Mono";color:#b9c9c0}
+    .terminal-body .prompt{color:var(--green)} .cursor{display:inline-block;width:7px;height:15px;background:var(--green);vertical-align:-2px;animation:blink 1s infinite}
+    @keyframes blink{50%{opacity:0}}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:38px}
+    .section-head h2{font-size:38px;letter-spacing:-1px}
+    .section-head p{color:var(--muted);max-width:570px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);padding:25px;transition:.25s}
+    .card:hover{border-color:#24533e;transform:translateY(-4px);box-shadow:0 18px 50px rgba(0,0,0,.25)}
+    .tag{display:inline-block;color:var(--green);font:11px "Space Mono";border:1px solid #214332;padding:5px 8px;margin-bottom:18px}
+    .card h3{font-size:21px;margin-bottom:9px}.card p{color:var(--muted);font-size:14px}
+    .card .arrow{display:inline-block;margin-top:20px;color:var(--green);font:12px "Space Mono"}
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{padding:10px 13px;border:1px solid var(--line);background:#0a0f0d;color:#b9c9c0;font:12px "Space Mono"}
+    .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:55px}
+    .about-box{border-left:2px solid var(--green);padding-left:22px;color:var(--muted)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+    .stat{border:1px solid var(--line);padding:17px}.stat b{display:block;color:var(--green);font:700 25px "Space Mono"}.stat span{color:var(--muted);font-size:12px}
+    .contact{border:1px solid var(--line);background:linear-gradient(120deg,#0d1511,#09100d);padding:45px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .contact h2{font-size:36px}.contact p{color:var(--muted);margin-top:8px}
+    footer{border-top:1px solid var(--line);padding:25px 0;color:#66776e;font:11px "Space Mono"}
+    footer .foot{display:flex;justify-content:space-between;gap:20px}
+    .reveal{opacity:0;transform:translateY(15px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+    @media(max-width:800px){
+      .links{display:none;position:absolute;top:72px;left:0;width:100%;background:#080c0a;padding:20px;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
+      .links.open{display:flex}.menu{display:block}.hero-grid,.about-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.hero{padding-top:110px}.contact{display:block}.contact .btn{display:inline-block;margin-top:25px}.section-head{display:block}.section-head p{margin-top:10px}.stats{grid-template-columns:1fr 1fr}h1{letter-spacing:-2px}
+    }
+    @media(max-width:430px){.stats{grid-template-columns:1fr}.contact{padding:28px}}
+
+    .readme-wrap{border:1px solid var(--line);background:rgba(12,17,15,.92);overflow:hidden}
+    .readme-toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:14px 16px;border-bottom:1px solid var(--line);background:#0a0f0d}
+    .readme-label{font:12px "Space Mono";color:var(--green)}
+    .readme-select{background:#101713;color:var(--text);border:1px solid #284435;padding:10px 13px;font:12px "Space Mono";outline:none;cursor:pointer}
+    .readme-select:focus{border-color:var(--green)}
+    .readme-status{padding:9px 16px;border-bottom:1px solid var(--line);color:var(--muted);font:11px "Space Mono"}
+    .readme-content{padding:35px;max-height:720px;overflow:auto;color:#c9d7cf}
+    .readme-content h1,.readme-content h2,.readme-content h3{color:var(--text);margin:25px 0 12px;line-height:1.25}
+    .readme-content h1{font-size:30px}.readme-content h2{font-size:24px}.readme-content h3{font-size:19px}
+    .readme-content p{margin:12px 0;color:#aebdb5}.readme-content a{color:var(--green);text-decoration:underline}
+    .readme-content ul,.readme-content ol{padding-left:25px;margin:12px 0}.readme-content li{margin:5px 0}
+    .readme-content code{font-family:"Space Mono";font-size:12px;background:#060a08;border:1px solid var(--line);padding:2px 5px}
+    .readme-content pre{background:#060a08;border:1px solid var(--line);padding:16px;overflow:auto;margin:15px 0}
+    .readme-content pre code{border:0;padding:0}
+    .readme-content blockquote{border-left:2px solid var(--green);padding-left:15px;color:var(--muted);margin:15px 0}
+    .readme-content img{max-width:100%;height:auto}
+    .readme-content table{width:100%;border-collapse:collapse;margin:15px 0}
+    .readme-content th,.readme-content td{border:1px solid var(--line);padding:8px;text-align:left}
+    .readme-content hr{border:0;border-top:1px solid var(--line);margin:25px 0}
+    @media(max-width:600px){.readme-toolbar{align-items:flex-start;flex-direction:column}.readme-content{padding:20px}}
+
+  </style>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#projects">Projects</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <div id="terminal">
-            <div id="termdiv"><p>Best From Hola</p></div>
-            <p> root@hola ~# <span class="typer"></span></p>
-            </p>
+<nav>
+  <div class="container nav-inner">
+    <a class="brand" href="#home">HUI<span>HOLA</span>_</a>
+    <button class="menu" aria-label="Open menu" onclick="document.querySelector('.links').classList.toggle('open')">☰</button>
+    <div class="links">
+      <a href="#about">01_ABOUT</a><a href="#skills">02_SKILLS</a><a href="#projects">03_PROJECTS</a><a href="#readme">04_README</a><a href="#contact">05_CONTACT</a>
+    </div>
+  </div>
+</nav>
+
+<main id="home">
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow">// DEVELOPER • SECURITY ENTHUSIAST</div>
+      <h1>Dhruv<br><span class="outline">Namdev</span></h1>
+      <p>I build software, Android applications, automation tools and security-focused projects. Exploring systems from application code all the way down to the terminal.</p>
+      <div class="buttons">
+        <a class="btn primary" href="https://github.com/HuiHola" target="_blank">VIEW GITHUB →</a>
+        <a class="btn" href="#projects">EXPLORE WORK</a>
+      </div>
+    </div>
+    <div class="terminal reveal">
+      <div class="terminal-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="terminal-title">huihola@localhost — bash</span></div>
+      <div class="terminal-body">
+        <div><span class="prompt">huihola@Hola</span>:~$ whoami</div>
+        <div>Dhruv Namdev</div>
+        <div><span class="prompt">huihola@Hola</span>:~$ cat focus.txt</div>
+        <div>cybersecurity + software engineering</div>
+        <div><span class="prompt">huihola@Hola</span>:~$ ls projects/</div>
+        <div>FindDroid/ &nbsp; Difi/ &nbsp; RAMA/ &nbsp; automation/ &nbsp; security/ </div>
+        <div><span class="prompt">huihola@Hola</span>:~$ <span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head reveal"><h2>01 / About</h2><p>A hands-on developer focused on learning by building, breaking, debugging and rebuilding.</p></div>
+    <div class="about-grid">
+      <div class="about-box reveal">
+        <p>I'm <strong>Dhruv Namdev</strong>, known online as <strong>HuiHola</strong>. My interests span programming, Android development, Linux, networking, embedded systems and cybersecurity.</p>
+        <p style="margin-top:16px">I enjoy understanding how things work underneath the interface and turning that knowledge into practical projects.</p>
+        <div class="stats">
+          <div class="stat"><b>Python</b><span>Automation & security scripting</span></div>
+          <div class="stat"><b>Java</b><span>Android development</span></div>
+          <div class="stat"><b>Linux</b><span>Systems & networking</span></div>
         </div>
-        <section id="about">
-            <h1>About Me</h1>
-            <p>My name is Dhruv Namdev, also known as HUI HOLA, and I am passionate about becoming a cybersecurity expert. While I don't hold a formal degree or certification, I have significant experience in programming languages like Python, Java, JavaScript, C, and C++. My technical skills enable me to identify vulnerabilities, secure systems, and create resilient applications.</p>
-            <p> I am committed to continuous learning in the cybersecurity domain, driven by a deep curiosity and the desire to protect digital environments. Through hands-on experience and personal projects, I aim to excel in this field and make meaningful contributions to the security landscape.</p>
-            <img src="Untitled video - Made with Clipchamp.gif" alt="Profile Picture">
-        </section>
-        <section id="skills">
-            <h1>Skills</h1>
-            <ul>
-                <h2>Languages</h2>
-                <li>HTML/CSS</li>
-                <li>JavaScript</li>
-                <li>python</li>
-                <li>java</li>
-                <li>C</li>
-                <li>Arduino Programming</li>
-                <ul>
-                    <h2>Frameworks</h2>
-                    <li>Node.js</li>
-                    <li>Express.js</li>
-                </ul>
-                <h2>More Skills</h2>
-                <ul>
-                    <li>Android Development</li>
-                    <li>Web Development</li>
-                    <li>API Development</li>
-                </ul>
-                
-            </ul>
-        </section>
-        <section id="experience">
-            <h1>Language Experience</h1>
-            <ul>
-                <h2>Python</h2>
-                <li>With Python, I have worked extensively on automation, data analysis, and cybersecurity scripting. I have developed custom scripts to automate penetration testing tasks, such as scanning for vulnerabilities, analyzing network traffic, and cracking passwords using libraries like scapy and hashlib. My experience also includes writing tools for web scraping, data analysis using pandas, and implementing security measures to protect against common vulnerabilities. Additionally, I have leveraged Python for creating secure APIs and conducting ethical hacking practices, focusing on safeguarding systems from potential threats.</li>
-                <h2>Java</h2>
-                <li>In Java, I have built Android applications, most notably "FindDroid," an app that helps users locate lost phones through messaging platforms. My experience with Java includes object-oriented programming, handling asynchronous tasks, and using APIs. Additionally, I have worked on backend logic, ensuring optimal performance and security in mobile applications.</li>
-                <h2>JavaScript</h2>
-                <li>With JavaScript, I have experience in both frontend and backend development, building dynamic and responsive websites. I’ve utilized frameworks like Node.js for server-side scripting and have worked with various APIs to handle data processing. My experience also includes working with RESTful APIs, asynchronous programming, and implementing client-side security measures to ensure robust web applications. I am proficient in DOM manipulation, event handling, and using JavaScript to enhance user interactions while maintaining secure web environments.</li>
-                <h2>C Lang</h2>
-                <li>I have worked with C primarily in system-level programming, including developing low-level applications for performance-critical tasks. My knowledge includes memory management, pointer arithmetic, and understanding data structures like linked lists, stacks, and queues. I've also used C to build efficient algorithms for embedded systems and operating system tasks.</li>
-                <h2>C++</h2>
-                <li>In C++, my focus has been on developing performance-optimized applications using object-oriented principles. I’ve worked with advanced concepts such as inheritance, polymorphism, and templates, and have built custom data structures and algorithms. My experience includes optimizing code for speed and memory, and I have used C++ in competitive programming and game development projects.</li>
-            </ul>
-        </section>
-        <section id="projects">
-            <h1>My Projects On</h1>
-            <ul>
-                <a target=”_blank” href="https://github.com/HuiHola"><img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="github logo"/></a>
-                <a target=”_blank” href="https://pypi.org/user/HuiHola/"><img src="https://pypi.org/static/images/logo-small.8998e9d1.svg" alt="pypi logo"/></a>
-                <a target = "_blank" href="https://finddroid.github.io"><img src = "https://finddroid.github.io/images/findroid_dark_logo.png" alt="finddroid logo"/></a>
-            </ul>
-        </section>
-        <section id="contact">
-            <h1>Contact Me</h1>
-            <p>Get in touch with me through:</p>
-            <ul>
-                <a target=”_blank” href="mailto:HuiHola@proton.me"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpxMtpMvp7gtz7UFUiFoYzkZOIlWbAhFu7R_PJ8GQMrA&s" alt="proton mail"/></a>
-                <a target="_blank" href="https://t.me/HuiHola"><img src="https://i.pinimg.com/736x/0a/50/c1/0a50c1516e434e0108649d2987cfaeb0.jpg" alt="telegram logo"/></a>
-            </ul>
-        </section>
-       
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="script.js"></script>
+      </div>
+      <div class="card reveal">
+        <span class="tag">CURRENT FOCUS</span>
+        <h3>Cybersecurity & Systems</h3>
+        <p>Building a deeper foundation in networking, Linux, application security, scripting and low-level systems while continuing to ship useful software.</p>
+        <a class="arrow" href="https://github.com/HuiHola" target="_blank">github.com/HuiHola ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-head reveal"><h2>02 / Skills</h2><p>Tools and technologies I use while building and experimenting.</p></div>
+    <div class="skills reveal">
+      <span class="skill">Python</span><span class="skill">Java</span><span class="skill">C</span><span class="skill">C++</span>
+      <span class="skill">JavaScript</span><span class="skill">HTML / CSS</span><span class="skill">Node.js</span><span class="skill">Express.js</span>
+      <span class="skill">Android</span><span class="skill">REST APIs</span><span class="skill">Linux</span><span class="skill">Git / GitHub</span>
+      <span class="skill">Networking</span><span class="skill">Arduino</span><span class="skill">ESP8266</span><span class="skill">Scapy</span>
+      <span class="skill">Security Scripting</span><span class="skill">Automation</span><span class="skill">Data Analysis</span>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-head reveal"><h2>03 / Projects</h2><p>Selected work from my development and security journey.</p></div>
+    <div class="grid">
+      <article class="card reveal"><span class="tag">ANDROID • JAVA</span><h3>FindDroid</h3><p>An Android device-finding project with location features, remote commands and device-control capabilities.</p><a class="arrow" href="https://github.com/finddroid/finddroid" target="_blank">SOURCE CODE ↗</a></article>
+      <article class="card reveal"><span class="tag">PYTHON • CLI</span><h3>Developer Tools</h3><p>Command-line utilities and Python experiments for automation, scripting, data handling and security learning.</p><a class="arrow" href="https://pypi.org/user/HuiHola/" target="_blank">PYPI PROFILE ↗</a></article>
+      <article class="card reveal"><span class="tag">GITHUB • REPO</span><h3>Developer Tools</h3><p>Multiple tools like RAMA,DiFi</p><a class="arrow" href="https://github.com/huihola" target="_blank">GITHUB PROFILE ↗</a></article>
+    </div>
+  </div>
+</section>
+
+
+<section id="readme">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>04 / README</h2>
+      <p>Live documentation from GitHub. Choose a repository/profile below to explore it without leaving the portfolio.</p>
+    </div>
+
+    <div class="readme-wrap reveal">
+      <div class="readme-toolbar">
+        <span class="readme-label">LIVE_GITHUB_README</span>
+        <select id="readmeSelect" class="readme-select">
+          <option value="https://raw.githubusercontent.com/HuiHola/HuiHola/main/README.md">HuiHola - GitHub Profile</option>
+          <option value="https://raw.githubusercontent.com/finddroid/finddroid/main/README.md">FindDroid - Android Project</option>
+          <option value="https://raw.githubusercontent.com/HuiHola/RAMA/main/README.md">RAMA - Android Malware</option>
+          <option value="https://raw.githubusercontent.com/HuiHola/Difi/main/README.md">DiFi - Networking Project</option>
+        </select>
+      </div>
+      <div id="readmeStatus" class="readme-status">Loading README...</div>
+      <article id="readmeContent" class="readme-content">
+        <p>Loading GitHub README...</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact reveal">
+      <div><div class="eyebrow">// LET'S CONNECT</div><h2>Build something useful.</h2><p>Open source, collaboration, development or security projects.</p></div>
+      <div class="buttons"><a class="btn primary" href="https://github.com/HuiHola" target="_blank">GITHUB ↗</a><a class="btn" href="https://pypi.org/user/HuiHola/" target="_blank">PYPI ↗</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="container foot"><span>© 2026 HUIHOLA / DHRUV NAMDEV</span><span>BUILT WITH HTML • CSS • JS</span></div></footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.links a').forEach(a => a.addEventListener('click', () => document.querySelector('.links').classList.remove('open')));
+</script>
+
+<script>
+  const readmeSelect = document.getElementById("readmeSelect");
+  const readmeContent = document.getElementById("readmeContent");
+  const readmeStatus = document.getElementById("readmeStatus");
+
+  async function loadReadme() {
+    const url = readmeSelect.value;
+    const selected = readmeSelect.options[readmeSelect.selectedIndex].text;
+
+    readmeStatus.textContent = `FETCHING // ${selected}`;
+    readmeContent.innerHTML = "<p>Loading...</p>";
+
+    try {
+      const response = await fetch(url, { cache: "no-store" });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      const markdown = await response.text();
+
+      // Render GitHub-flavoured Markdown.
+      marked.setOptions({
+        gfm: true,
+        breaks: true
+      });
+
+      readmeContent.innerHTML = marked.parse(markdown);
+      readmeStatus.textContent = `LIVE // ${selected}`;
+    } catch (error) {
+      readmeStatus.textContent = "ERROR // README COULD NOT BE LOADED";
+      readmeContent.innerHTML = `
+        <p>Could not load this README from GitHub.</p>
+        <p class="mono" style="color:#91a49a">${error.message}</p>
+        <p><a href="${url}" target="_blank" rel="noopener">OPEN RAW README ↗</a></p>
+      `;
+    }
+  }
+
+  readmeSelect.addEventListener("change", loadReadme);
+  loadReadme();
+</script>
+
 </body>
 </html>
+
+
+
+
